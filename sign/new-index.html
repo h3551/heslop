@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heslop.de/sign :: Daniel Heslop – Facets of Form</title>
+    <meta name="description" content="Persönliche Webpräsenz von Daniel Heslop – Geometrie, Design, Wohnträume und kreative Experimente.">
+    <meta name="author" content="Daniel Heslop">
+    <link rel="author" href="humans.txt" type="text/plain">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="heslop.de/sign – Facets of Form">
+    <meta property="og:description" content="Geometrie trifft auf Lebensraum. Entdecken Sie 3D-Experimente, Web-Design und die Suche nach der perfekten Wohnung.">
+    <meta property="og:image" content="https://heslop.de/sign/assets/og-preview.jpg">
+    <meta property="og:url" content="https://heslop.de/sign">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔷</text></svg>">
+
+    <!-- Tailwind CSS via CDN (for demo; use build in production) -->
+<!--
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        accent: '#00c8ff',
+                        geo: '#ffd700',
+                    },
+                    fontFamily: {
+                        mono: ['"Courier New"', 'monospace'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'rotate-slow': 'rotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+-->
+<!--
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .geo-canvas { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); }
+        .prism { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .prism:hover { transform: rotateY(15deg) scale(1.05); }
+        .scroll-indicator { animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+    </style>
+-->
+    <link rel="stylesheet" type="text/css" role="stylesheet" href="css/new-main.css">
+</head>
+<body class="bg-primary text-white font-sans leading-relaxed">
+
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#top" class="text-2xl font-mono tracking-wider">
+                heslop<span class="text-accent">.</span>de<span class="text-accent">/</span>sign
+            </a>
+            <ul class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
+                <li><a href="#home" class="hover:text-accent transition">Home</a></li>
+                <li><a href="#about" class="hover:text-accent transition">About</a></li>
+                <li><a href="#portfolio" class="hover:text-accent transition">Portfolio</a></li>
+                <li><a href="#geometrie" class="hover:text-accent transition">Geometrie</a></li>
+                <li><a href="#contact" class="hover:text-accent transition">Kontakt</a></li>
+            </ul>
+            <button id="mobile-menu-btn" class="md:hidden text-xl">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-primary/99 z-40 hidden flex flex-col items-center justify-center space-y-8 text-2xl uppercase">
+        <a href="#home" class="hover:text-accent">Home</a>
+        <a href="#about" class="hover:text-accent">About</a>
+        <a href="#portfolio" class="hover:text-accent">Portfolio</a>
+        <a href="#geometrie" class="hover:text-accent">Geometrie</a>
+        <a href="#contact" class="hover:text-accent">Kontakt</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 geo-canvas"></div>
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-30"></canvas>
+        
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-mono mb-6 animate-float">
+                heslop<span class="text-accent">.</span>de<span class="text-accent">/</span>sign
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                Facets of Form – Geometrie, Design und die Suche nach Raum.
+            </p>
+            <p class="mb-12 text-lg italic">
+                „この短い個人的なプレゼンテーションは、関係する作家やアーティストのアイデアをあなたに提供します。」
+            </p>
+            <a href="#portfolio" class="inline-block bg-accent text-primary px-8 py-4 rounded-none uppercase tracking-widest font-bold hover:bg-geo hover:text-primary transition">
+                Enter the Blueprint
+            </a>
+            <div class="mt-16 scroll-indicator text-accent">↓</div>
+        </div>
+    </section>
+
+    <!-- About / Ziel -->
+    <section id="about" class="py-24 px-6 bg-black/30">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-mono mb-12 text-center">Unser Ziel</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg mb-6">
+                        Eine eigene Wohnung – ein Raum, der nicht nur lebt, sondern atmet. 
+                        <strong>Daniel Heslop</strong> sucht seit Jahren nach dem perfekten Ort: 
+                        zentral, lichtdurchflutet, mit Platz für Kreativität und 3D-Modelle.
+                    </p>
+                    <p class="mb-6">
+                        Die Bedingungen sind klar definiert unter:
+                        <a href="eigene_wohnung.html" class="text-accent underline hover:no-underline" target="_blank">
+                            heslop.de/sign/eigene_wohnung.html
+                        </a>
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        Nordstr. 127, 40822 Mettmann<br>
+                        T: 02104 1363913 | E: daniel@heslop.de
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-64 h-64 bg-gradient-to-br from-accent to-geo rounded-none flex items-center justify-center text-6xl font-bold prism">
+                        3D
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-24 px-6 bg-primary">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-mono mb-4 text-center">Portfolio – Geometric Gallery</h2>
+            <p class="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
+                Jede Arbeit ist eine Facette. Drehen, erkunden, eintauchen.
+            </p>
+
+            <!-- Filter Tabs -->
+            <div class="flex justify-center space-x-4 mb-12 flex-wrap">
+                <button class="filter-btn active px-6 py-2 border border-accent text-accent uppercase text-sm tracking-widest" data-filter="all">Alle</button>
+                <button class="filter-btn px-6 py-2 border border-white/30 text-white/70 uppercase text-sm tracking-widest" data-filter="3d">3D</button>
+                <button class="filter-btn px-6 py-2 border border-white/30 text-white/70 uppercase text-sm tracking-widest" data-filter="web">Web</button>
+                <button class="filter-btn px-6 py-2 border border-white/30 text-white/70 uppercase text-sm tracking-widest" data-filter="personal">Persönlich</button>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                <!-- Project 1: Geometrie -->
+                <article class="portfolio-item" data-category="3d web">
+                    <a href="#geometrie" class="block group">
+                        <div class="relative overflow-hidden bg-black/50 h-64 prism perspective-1000">
+                            <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-geo/20 group-hover:from-accent/40 group-hover:to-geo/40 transition"></div>
+                            <canvas class="w-full h-full" data-model="tetra"></canvas>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                                <h3 class="text-xl font-mono">Geometrie Lab</h3>
+                                <p class="text-sm text-gray-300">2016 – Interaktive 3D-Demo mit Canvas & SketchUp</p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Project 2: Wohnung -->
+                <article class="portfolio-item" data-category="personal 3d">
+                    <a href="eigene_wohnung.html" class="block group" target="_blank">
+                        <div class="relative overflow-hidden bg-black/50 h-64 prism">
+                            <div class="absolute inset-0 bg-gradient-to-br from-geo/20 to-accent/20 group-hover:from-geo/40 group-hover:to-accent/40 transition"></div>
+                            <div class="w-full h-full flex items-center justify-center text-6xl font-bold text-geo/70">🏠</div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                                <h3 class="text-xl font-mono">Eigene Wohnung</h3>
+                                <p class="text-sm text-gray-300">2025 – Architektur als Lebensraum</p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Project 3: Humans.txt -->
+                <article class="portfolio-item" data-category="web">
+                    <a href="humans.txt" class="block group" target="_blank">
+                        <div class="relative overflow-hidden bg-black/50 h-64 prism">
+                            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 group-hover:from-white/20 transition"></div>
+                            <pre class="p-6 text-xs text-gray-400 overflow-hidden"><code>/* TEAM */
+Designer: Daniel Heslop
+Contact: daniel@heslop.de
+Twitter: @h3551</code></pre>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                                <h3 class="text-xl font-mono">humans.txt</h3>
+                                <p class="text-sm text-gray-300">2010–2025 – Die Menschen hinter dem Code</p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Placeholder for future -->
+                <article class="portfolio-item opacity-50" data-category="3d">
+                    <div class="relative overflow-hidden bg-black/50 h-64 prism cursor-not-allowed">
+                        <div class="w-full h-full flex items-center justify-center text-4xl">🔷</div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                            <h3 class="text-xl font-mono">Coming 2026</h3>
+                            <p class="text-sm text-gray-300">AI-generierte Polyeder</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Geometrie Lab -->
+    <section id="geometrie" class="py-24 px-6 bg-black/50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-mono mb-12 text-center">Geometrie Lab</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-mono mb-4">Dreidimensionales Erlebnis</h3>
+                    <p class="mb-6">
+                        Ein interaktives Canvas-Experiment aus 2016 – steuerbar mit Maus oder Touch. 
+                        Ursprünglich mit einem eingebetteten SketchUp-Modell kombiniert.
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        <strong>Tech:</strong> HTML5 Canvas, JavaScript, Three.js (modernisiert)
+                    </p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <canvas id="geometrie-canvas" class="w-full max-w-md h-64 bg-black/80 rounded-none shadow-2xl"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 px-6 bg-primary">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-mono mb-12">Kontakt & Zusammenarbeit</h2>
+            <p class="text-lg mb-8">
+                Interesse an 3D-Modellen, Web-Experimenten oder der perfekten Wohnung?
+            </p>
+            <div class="space-y-4 mb-12">
+                <p><a href="mailto:daniel@heslop.de" class="text-accent underline">daniel@heslop.de</a></p>
+                <p><a href="https://x.com/h3551" target="_blank" class="text-accent underline">@h3551 auf X</a></p>
+                <p>Mettmann, Deutschland</p>
+            </div>
+            <form action="https://formspree.io/f/your-id" method="POST" class="max-w-md mx-auto text-left">
+                <input type="text" name="name" placeholder="Name" required class="w-full mb-4 p-3 bg-black/50 border border-white/20 text-white">
+                <input type="email" name="email" placeholder="E-Mail" required class="w-full mb-4 p-3 bg-black/50 border border-white/20 text-white">
+                <textarea name="message" placeholder="Ihre Nachricht..." required rows="4" class="w-full mb-4 p-3 bg-black/50 border border-white/20 text-white"></textarea>
+                <button type="submit" class="w-full bg-accent text-primary py-3 uppercase tracking-widest font-bold hover:bg-geo transition">
+                    Absenden
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-black/50 text-center text-sm">
+        <p class="mb-4">
+            Copyright © 2010–<span id="year">2025</span> Daniel Heslop. Alle Rechte vorbehalten.
+        </p>
+        <nav class="flex justify-center space-x-6 flex-wrap">
+            <a href="#top" class="hover:text-accent">Nach oben</a>
+            <a href="impressum.html" class="hover:text-accent">Impressum</a>
+            <a href="humans.txt" class="hover:text-accent">humans.txt</a>
+        </nav>
+    </footer>
+
+    <!-- Three.js for 3D -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.min.js"></script>
+    <script>
+        // Update year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Portfolio filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active', 'text-accent', 'border-accent');
+                    b.classList.add('text-white/70', 'border-white/30');
+                });
+                btn.classList.add('active', 'text-accent', 'border-accent');
+                btn.classList.remove('text-white/70', 'border-white/30');
+
+                const filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    const cats = item.getAttribute('data-category').split(' ');
+                    if (filter === 'all' || cats.includes(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Hero Canvas – Floating Tetrahedron
+        const heroCanvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true });
+        renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+
+        const geometry = new THREE.TetrahedronGeometry(2, 0);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00c8ff, wireframe: true });
+        const tetra = new THREE.Mesh(geometry, material);
+        scene.add(tetra);
+        camera.position.z = 5;
+
+        function animateHero() {
+            requestAnimationFrame(animateHero);
+            tetra.rotation.x += 0.01;
+            tetra.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animateHero();
+
+        // Geometrie Lab Canvas
+        const geoCanvas = document.getElementById('geometrie-canvas');
+        const geoScene = new THREE.Scene();
+        const geoCamera = new THREE.PerspectiveCamera(75, geoCanvas.clientWidth / geoCanvas.clientHeight, 0.1, 1000);
+        const geoRenderer = new THREE.WebGLRenderer({ canvas: geoCanvas, antialias: true });
+        geoRenderer.setSize(geoCanvas.clientWidth, geoCanvas.clientHeight);
+        geoRenderer.setClearColor(0x000000);
+
+        const geoGeo = new THREE.DodecahedronGeometry(1.5, 0);
+        const geoMat = new THREE.MeshStandardMaterial({ color: 0xffd700, wireframe: false, metalness: 0.8, roughness: 0.2 });
+        const dodeca = new THREE.Mesh(geoGeo, geoMat);
+        geoScene.add(dodeca);
+
+        const light = new THREE.PointLight(0xffffff, 2);
+        light.position.set(5, 5, 5);
+        geoScene.add(light);
+
+        geoCamera.position.z = 5;
+
+        let mouseX = 0, mouseY = 0;
+        geoCanvas.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animateGeo() {
+            requestAnimationFrame(animateGeo);
+            dodeca.rotation.x += 0.005 + mouseY * 0.02;
+            dodeca.rotation.y += 0.005 + mouseX * 0.02;
+            geoRenderer.render(geoScene, geoCamera);
+        }
+        animateGeo();
+
+        // Responsive canvases
+        window.addEventListener('resize', () => {
+            // Hero
+            camera.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+
+            // Geo
+            geoCamera.aspect = geoCanvas.clientWidth / geoCanvas.clientHeight;
+            geoCamera.updateProjectionMatrix();
+            geoRenderer.setSize(geoCanvas.clientWidth, geoCanvas.clientHeight);
+        });
+    </script>
+</body>
+</html>
