@@ -1,6 +1,12 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+/* TEAM */
+Designer: Daniel Heslop
+Contact: daniel@heslop.de
+Site: heslop.de/sign
+Address: Auf dem Hüls 6, 40822 Mettmann
+Twitter: @h3551
 
-# HUMANS
+/* THANKS */
+Three.js, Tailwind CSS, Formspree
 
-		Daniel Heslop, media designer and executive author
+/* SITE */
+Last update: 2025
