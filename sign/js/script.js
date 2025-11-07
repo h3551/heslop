@@ -146,3 +146,101 @@ window.onload = function () {
 	}
 	init();
 };
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Portfolio filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active', 'text-accent', 'border-accent');
+                    b.classList.add('text-white/70', 'border-white/30');
+                });
+                btn.classList.add('active', 'text-accent', 'border-accent');
+                btn.classList.remove('text-white/70', 'border-white/30');
+
+                const filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    const cats = item.getAttribute('data-category').split(' ');
+                    if (filter === 'all' || cats.includes(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Hero Canvas – Floating Tetrahedron
+        const heroCanvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true });
+        renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+
+        const geometry = new THREE.TetrahedronGeometry(2, 0);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00c8ff, wireframe: true });
+        const tetra = new THREE.Mesh(geometry, material);
+        scene.add(tetra);
+        camera.position.z = 5;
+
+        function animateHero() {
+            requestAnimationFrame(animateHero);
+            tetra.rotation.x += 0.01;
+            tetra.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animateHero();
+
+        // Geometrie Lab Canvas
+        const geoCanvas = document.getElementById('geometrie-canvas');
+        const geoScene = new THREE.Scene();
+        const geoCamera = new THREE.PerspectiveCamera(75, geoCanvas.clientWidth / geoCanvas.clientHeight, 0.1, 1000);
+        const geoRenderer = new THREE.WebGLRenderer({ canvas: geoCanvas, antialias: true });
+        geoRenderer.setSize(geoCanvas.clientWidth, geoCanvas.clientHeight);
+        geoRenderer.setClearColor(0x000000);
+
+        const geoGeo = new THREE.DodecahedronGeometry(1.5, 0);
+        const geoMat = new THREE.MeshStandardMaterial({ color: 0xffd700, wireframe: false, metalness: 0.8, roughness: 0.2 });
+        const dodeca = new THREE.Mesh(geoGeo, geoMat);
+        geoScene.add(dodeca);
+
+        const light = new THREE.PointLight(0xffffff, 2);
+        light.position.set(5, 5, 5);
+        geoScene.add(light);
+
+        geoCamera.position.z = 5;
+
+        let mouseX = 0, mouseY = 0;
+        geoCanvas.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animateGeo() {
+            requestAnimationFrame(animateGeo);
+            dodeca.rotation.x += 0.005 + mouseY * 0.02;
+            dodeca.rotation.y += 0.005 + mouseX * 0.02;
+            geoRenderer.render(geoScene, geoCamera);
+        }
+        animateGeo();
+
+        // Responsive canvases
+        window.addEventListener('resize', () => {
+            // Hero
+            camera.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+
+            // Geo
+            geoCamera.aspect = geoCanvas.clientWidth / geoCanvas.clientHeight;
+            geoCamera.updateProjectionMatrix();
+            geoRenderer.setSize(geoCanvas.clientWidth, geoCanvas.clientHeight);
+        });
